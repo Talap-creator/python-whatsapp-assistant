@@ -2,14 +2,9 @@ import logging
 import os
 
 from app import create_app
-from app.services.sender import send_bulk_messages
+
 
 app = create_app()
-
-
-@app.cli.command("send-messages")
-def send_messages_command():
-    send_bulk_messages("example.txt")
 
 
 if __name__ == "__main__":
