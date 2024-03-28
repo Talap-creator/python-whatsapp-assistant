@@ -44,13 +44,13 @@ def connect_db():
         return None    
 
 #save message to the database    
-def save_message(wa_id, username, message):
+def save_message(wa_id, name, message):
     conn = connect_db()
     with conn.cursor() as cursor:
         query = """
-        INSERT INTO user_messages (wa_id, username, message)
+        INSERT INTO user_messages (wa_id, name, message)
         VALUES (%s, %s, %s);
         """
-        cursor.execute(query, (wa_id, username, message))
+        cursor.execute(query, (wa_id, name, message))
     conn.commit()
     conn.close()
