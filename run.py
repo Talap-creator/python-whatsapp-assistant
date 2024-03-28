@@ -2,8 +2,10 @@ import logging
 import os
 
 from app import create_app
+# В начале вашего файла run.py или внутри функции, которая запускает приложение
+from app.database.db import create_table
 
-
+create_table()
 app = create_app()
 
 
