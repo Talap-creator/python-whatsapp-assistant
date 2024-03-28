@@ -2,7 +2,7 @@ import psycopg2
 import logging
 import os
 
-from utils.whatsapp_utils import get_text_message_input, send_message
+
 from dotenv import load_dotenv
 
 load_dotenv()
