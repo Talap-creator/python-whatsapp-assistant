@@ -1,6 +1,9 @@
 import requests
 import json
 import os
+import time
+import random
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -34,7 +37,11 @@ def send_whatsapp_messages(access_token, phone_number_id, recipients, template_n
             print(f'Message sent successfully to {recipient_number}')
         else:
             print(f'Failed to send message to {recipient_number}: {response.status_code}, {response.text}')
-
+        # Генерируем случайное время паузы от 30 секунд до 5 минут
+        sleep_time = random.randint(30, 300)
+        print(f'Waiting for {sleep_time} seconds before sending the next message...')
+        time.sleep(sleep_time)
+        
 # Использование функции
 # Твой ID номера телефона
 recipients = ['77089452884', '77758327252', '77054430621']  # Список номеров получателей
