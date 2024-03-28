@@ -1,10 +1,12 @@
 import logging
-from flask import current_app, jsonify
 import json
 import requests
-
-from app.services.openai_service import generate_response
 import re
+
+from flask import current_app, jsonify
+from app.services.openai_service import generate_response
+from app.database.db import save_message
+
 
 
 def log_http_response(response):
@@ -82,6 +84,7 @@ def process_whatsapp_message(body):
     message = body["entry"][0]["changes"][0]["value"]["messages"][0]
     message_body = message["text"]["body"]
 
+    save_message(wa_id, name, message_body)
     # TODO: implement custom function here
     # response = generate_response(message_body)
 
