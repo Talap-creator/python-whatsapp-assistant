@@ -38,14 +38,14 @@ def send_whatsapp_messages(access_token, phone_number_id, recipients, template_n
         else:
             print(f'Failed to send message to {recipient_number}: {response.status_code}, {response.text}')
         # Генерируем случайное время паузы от 30 секунд до 5 минут
-        sleep_time = random.randint(30, 300)
+        sleep_time = random.randint(1,5)
         print(f'Waiting for {sleep_time} seconds before sending the next message...')
         time.sleep(sleep_time)
         
 # Использование функции
 # Твой ID номера телефона
-recipients = ['77089452884', '77758327252', '77054430621']  # Список номеров получателей
-template_name = 'hello_world'  # Название твоего шаблона
+recipients = ['77089452884']  # Список номеров получателей
+template_name = 'привет бро'  # Название твоего шаблона
 language_code = 'en_US'  # Код языка для шаблона
 
 send_whatsapp_messages(access_token, phone_number_id, recipients, template_name, language_code)
