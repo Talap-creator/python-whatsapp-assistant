@@ -21,7 +21,17 @@ def create_table():
             message TEXT NOT NULL,            
             timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP                       
         );            
-        """)        
+        """)
+        # Создание таблицы для сообщений бота
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS bot_messages (
+            id SERIAL PRIMARY KEY,
+            wa_id BIGINT NOT NULL,
+            name VARCHAR(255),
+            message TEXT NOT NULL,
+            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)      
 
     conn.commit()  # Зафиксируйте изменения в БД
     conn.close()  # Закройте соединение
@@ -49,6 +59,17 @@ def save_message(wa_id, name, message):
     with conn.cursor() as cursor:
         query = """
         INSERT INTO user_messages (wa_id, name, message)
+        VALUES (%s, %s, %s);
+        """
+        cursor.execute(query, (wa_id, name, message))
+    conn.commit()
+    conn.close()
+
+def save_bot_message(wa_id, name, message):
+    conn = connect_db()
+    with conn.cursor() as cursor:
+        query = """
+        INSERT INTO bot_messages (wa_id, name, message)
         VALUES (%s, %s, %s);
         """
         cursor.execute(query, (wa_id, name, message))

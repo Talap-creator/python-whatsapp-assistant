@@ -6,7 +6,7 @@ import re
 from flask import current_app, jsonify
 from app.services.openai_service import generate_response
 from app.database.db import save_message
-
+from app.database.db import save_bot_message
 
 
 def log_http_response(response):
@@ -91,7 +91,8 @@ def process_whatsapp_message(body):
     # OpenAI Integration
     response = generate_response(message_body, wa_id, name)
     response = process_text_for_whatsapp(response)
-
+    save_bot_message(wa_id, name, response)
+    
     # For now works only if recipient from Kazakhstan, did not include additional logic for other countries
     recipient_waid = '+78' + wa_id[1:]
     data = get_text_message_input(recipient_waid, response)

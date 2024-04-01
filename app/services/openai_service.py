@@ -1,9 +1,10 @@
-from openai import OpenAI
 import shelve
-from dotenv import load_dotenv
 import os
 import time
 import logging
+
+from openai import OpenAI
+from dotenv import load_dotenv
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
