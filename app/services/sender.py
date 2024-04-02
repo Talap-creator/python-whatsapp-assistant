@@ -47,7 +47,7 @@ def send_whatsapp_messages(access_token, phone_number_id, recipients, template_n
         
 # Использование функции
 # Твой ID номера телефона
-recipients = ['77089452884','77758327252']  # Список номеров получателей
+recipients = ['77089452884','77076664656','77019412825','77759560222','77075770753']  # Список номеров получателей указывать так '77089452884','77758327252'
 template_name = 'marketing'  # Название твоего шаблона heroku run python app/services/sender.py
 language_code = 'ru'  # Код языка для шаблона
 
