@@ -37,14 +37,17 @@ def send_whatsapp_messages(access_token, phone_number_id, recipients, template_n
             print(f'Message sent successfully to {recipient_number}')
         else:
             print(f'Failed to send message to {recipient_number}: {response.status_code}, {response.text}')
+
         # Генерируем случайное время паузы от 30 секунд до 5 минут
         sleep_time = random.randint(30, 300)
         print(f'Waiting for {sleep_time} seconds before sending the next message...')
         time.sleep(sleep_time)
+
+    print("All messages have been sent. The script has finished.")
         
 # Использование функции
 # Твой ID номера телефона
-recipients = ['77089452884']  # Список номеров получателей
+recipients = ['77089452884','77758327252']  # Список номеров получателей
 template_name = 'marketing'  # Название твоего шаблона heroku run python app/services/sender.py
 language_code = 'ru'  # Код языка для шаблона
 
