@@ -4,6 +4,7 @@ import os
 import time
 import random
 
+from app.database.db import save_message
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -35,6 +36,7 @@ def send_whatsapp_messages(access_token, phone_number_id, recipients, template_n
         
         if response.status_code == 200:
             print(f'Message sent successfully to {recipient_number}')
+            save_message(recipient_number, 'ЖасикВатсап', template_name)
         else:
             print(f'Failed to send message to {recipient_number}: {response.status_code}, {response.text}')
 
@@ -47,7 +49,7 @@ def send_whatsapp_messages(access_token, phone_number_id, recipients, template_n
         
 # Использование функции
 # Твой ID номера телефона
-recipients = ['77089452884','77076664656','77019412825','77759560222','77075770753']  # Список номеров получателей указывать так '77089452884','77758327252'
+recipients = ['77089452884']  # Список номеров получателей указывать так '77089452884','77758327252'
 template_name = 'marketing'  # Название твоего шаблона heroku run python app/services/sender.py
 language_code = 'ru'  # Код языка для шаблона
 
